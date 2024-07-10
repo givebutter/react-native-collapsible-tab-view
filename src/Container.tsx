@@ -81,6 +81,7 @@ export const Container = React.memo(
         onTabChange,
         width: customWidth,
         allowHeaderOverscroll,
+        animatedPager = true,
       },
       ref
     ) => {
@@ -143,15 +144,17 @@ export const Container = React.memo(
         setData(tabNamesArray)
       }, [tabNamesArray])
 
-      const focusedTab: ContextType['focusedTab'] = useDerivedValue<TabName>(() => {
-        return tabNames.value[index.value]
-      }, [tabNames])
+      const focusedTab: ContextType['focusedTab'] =
+        useDerivedValue<TabName>(() => {
+          return tabNames.value[index.value]
+        }, [tabNames])
       const calculateNextOffset = useSharedValue(index.value)
-      const headerScrollDistance: ContextType['headerScrollDistance'] = useDerivedValue(() => {
-        return headerHeight.value !== undefined
-          ? headerHeight.value - minHeaderHeight
-          : 0
-      }, [headerHeight, minHeaderHeight])
+      const headerScrollDistance: ContextType['headerScrollDistance'] =
+        useDerivedValue(() => {
+          return headerHeight.value !== undefined
+            ? headerHeight.value - minHeaderHeight
+            : 0
+        }, [headerHeight, minHeaderHeight])
 
       const indexDecimal: ContextType['indexDecimal'] = useSharedValue(
         index.value
@@ -300,7 +303,7 @@ export const Container = React.memo(
               ref,
               0,
               headerScrollDistance.value - contentInset.value,
-              true
+              animatedPager
             )
           } else {
             containerRef.current?.setPage(i)

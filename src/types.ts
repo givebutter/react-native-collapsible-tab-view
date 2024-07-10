@@ -128,6 +128,13 @@ export type CollapsibleProps = {
    * @default false
    */
   allowHeaderOverscroll?: boolean
+
+  /**
+   * Whether the pager animates when a TabItem is selected
+   *
+   * @default true
+   */
+  animatedPager?: boolean
 }
 
 export type ContextType<T extends TabName = TabName> = {
