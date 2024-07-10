@@ -78,6 +78,7 @@ export const Container = React.memo(
         onTabChange,
         width: customWidth,
         allowHeaderOverscroll,
+        animatedPager = true,
       },
       ref
     ) => {
@@ -300,7 +301,7 @@ export const Container = React.memo(
               ref,
               0,
               headerScrollDistance.value - contentInset,
-              true
+              animatedPager
             )
           } else {
             containerRef.current?.setPage(i)
