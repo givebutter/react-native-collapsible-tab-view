@@ -306,7 +306,11 @@ export const Container = React.memo(
               animatedPager
             )
           } else {
-            containerRef.current?.setPage(i)
+            if (animatedPager) {
+              containerRef.current?.setPage(i)
+            } else {
+              containerRef.current?.setPageWithoutAnimation(i)
+            }
           }
         },
         // eslint-disable-next-line react-hooks/exhaustive-deps
