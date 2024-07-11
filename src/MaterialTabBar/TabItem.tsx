@@ -36,6 +36,8 @@ export const MaterialTabItem = <T extends TabName = string>(
     ...rest
   } = props
 
+  console.log(`------------------ ${indexDecimal}`)
+
   const stylez = useAnimatedStyle(() => {
     return {
       opacity: interpolate(
