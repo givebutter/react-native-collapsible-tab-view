@@ -22,6 +22,7 @@ import {
   useAnimatedDynamicRefs,
   useContainerRef,
   usePageScrollHandler,
+  usePageSelectedHandler,
   useTabProps,
   useLayoutHeight,
 } from './hooks'
@@ -324,6 +325,13 @@ export const Container = React.memo(
         }
       )
 
+      const pageSelectedHandler = usePageSelectedHandler({
+        onPageSelected: (e) => {
+          'worklet'
+          indexDecimal.value = e.position
+        }
+      });
+
       const pageScrollHandler = usePageScrollHandler({
         onPageScroll: (e) => {
           'worklet'
@@ -435,6 +443,7 @@ export const Container = React.memo(
             <AnimatedPagerView
               ref={containerRef}
               onPageScroll={pageScrollHandler}
+              onPageSelected={pageSelectedHandler}
               initialPage={initialIndex}
               {...pagerProps}
               style={[pagerProps?.style, StyleSheet.absoluteFill]}
@@ -451,7 +460,7 @@ export const Container = React.memo(
                       >
                         {
                           React.Children.toArray(children)[
-                            i
+                          i
                           ] as React.ReactElement
                         }
                       </Lazy>

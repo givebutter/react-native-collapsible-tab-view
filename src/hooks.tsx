@@ -10,7 +10,7 @@ import {
 } from 'react'
 import { LayoutChangeEvent, StyleSheet, ViewProps } from 'react-native'
 import { ContainerRef, RefComponent } from 'react-native-collapsible-tab-view'
-import { PagerViewOnPageScrollEvent } from 'react-native-pager-view'
+import { PagerViewOnPageScrollEvent, PagerViewOnPageSelectedEvent } from 'react-native-pager-view'
 import Animated, {
   cancelAnimation,
   useAnimatedReaction,
@@ -638,6 +638,31 @@ export function useFocusedTab() {
 export function useAnimatedTabIndex() {
   const { indexDecimal } = useTabsContext()
   return indexDecimal
+}
+
+export const usePageSelectedHandler = (
+  handlers: {
+    onPageSelected: (
+      event: PagerViewOnPageSelectedEvent['nativeEvent'],
+      context: unknown
+    ) => unknown
+  },
+  dependencies?: DependencyList
+) => {
+  const { context, doDependenciesDiffer } = useHandler(handlers, dependencies);
+  const subscribeForEvents = ['onPageSelected'];
+
+  return useEvent<any>(
+    (event) => {
+      'worklet';
+      const { onPageSelected } = handlers;
+      if (onPageSelected && event.eventName.endsWith('onPageSelected')) {
+        onPageSelected(event, context);
+      }
+    },
+    subscribeForEvents,
+    doDependenciesDiffer
+  );
 }
 
 export const usePageScrollHandler = (
