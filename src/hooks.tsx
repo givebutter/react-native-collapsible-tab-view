@@ -647,7 +647,7 @@ export const usePageSelectedHandler = (
       context: unknown
     ) => unknown
   },
-  dependencies?: DependencyList
+  dependencies?: unknown[]
 ) => {
   const { context, doDependenciesDiffer } = useHandler(handlers, dependencies);
   const subscribeForEvents = ['onPageSelected'];
