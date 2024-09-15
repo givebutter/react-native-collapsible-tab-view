@@ -329,8 +329,8 @@ export const Container = React.memo(
         onPageSelected: (e) => {
           'worklet'
           indexDecimal.value = e.position
-        }
-      });
+        },
+      })
 
       const pageScrollHandler = usePageScrollHandler({
         onPageScroll: (e) => {
@@ -460,7 +460,7 @@ export const Container = React.memo(
                       >
                         {
                           React.Children.toArray(children)[
-                          i
+                            i
                           ] as React.ReactElement
                         }
                       </Lazy>

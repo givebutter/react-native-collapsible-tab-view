@@ -10,7 +10,10 @@ import {
 } from 'react'
 import { LayoutChangeEvent, StyleSheet, ViewProps } from 'react-native'
 import { ContainerRef, RefComponent } from 'react-native-collapsible-tab-view'
-import { PagerViewOnPageScrollEvent, PagerViewOnPageSelectedEvent } from 'react-native-pager-view'
+import {
+  PagerViewOnPageScrollEvent,
+  PagerViewOnPageSelectedEvent,
+} from 'react-native-pager-view'
 import Animated, {
   cancelAnimation,
   useAnimatedReaction,
@@ -280,7 +283,7 @@ export const useScrollHandlerY = (name: TabName) => {
       'worklet'
       enabled.value = toggle
     },
-    [name, refMap, scrollTo]
+    [enabled]
   )
 
   /**
@@ -649,20 +652,20 @@ export const usePageSelectedHandler = (
   },
   dependencies?: unknown[]
 ) => {
-  const { context, doDependenciesDiffer } = useHandler(handlers, dependencies);
-  const subscribeForEvents = ['onPageSelected'];
+  const { context, doDependenciesDiffer } = useHandler(handlers, dependencies)
+  const subscribeForEvents = ['onPageSelected']
 
   return useEvent<any>(
     (event) => {
-      'worklet';
-      const { onPageSelected } = handlers;
+      'worklet'
+      const { onPageSelected } = handlers
       if (onPageSelected && event.eventName.endsWith('onPageSelected')) {
-        onPageSelected(event, context);
+        onPageSelected(event, context)
       }
     },
     subscribeForEvents,
     doDependenciesDiffer
-  );
+  )
 }
 
 export const usePageScrollHandler = (
