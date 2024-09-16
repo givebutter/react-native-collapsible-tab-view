@@ -31,7 +31,18 @@ export type {
   TabProps,
 }
 
-export const Tabs = {
+interface ITabs {
+  Container: typeof Container
+  Tab: typeof Tab
+  Lazy: typeof Lazy
+  FlatList: typeof FlatList
+  ScrollView: typeof ScrollView
+  SectionList: typeof SectionList
+  FlashList: typeof FlashList
+  MasonryFlashList: typeof MasonryFlashList
+}
+
+export const Tabs: ITabs = {
   Container,
   Tab,
   Lazy,

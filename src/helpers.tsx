@@ -1,5 +1,17 @@
-import { FlatList, Platform, SectionList, I18nManager } from 'react-native'
-import Animated, { AnimatedRef, scrollTo } from 'react-native-reanimated'
+import { ComponentClass } from 'react'
+import {
+  FlatList,
+  FlatListProps,
+  Platform,
+  SectionList,
+  SectionListProps,
+  I18nManager,
+} from 'react-native'
+import Animated, {
+  AnimatedRef,
+  AnimateProps,
+  scrollTo,
+} from 'react-native-reanimated'
 
 import { RefComponent } from './types'
 
@@ -11,9 +23,13 @@ export const { isRTL } = I18nManager
 
 export const IS_IOS = Platform.OS === 'ios'
 
-export const AnimatedFlatList = Animated.createAnimatedComponent(FlatList)
+export const AnimatedFlatList: ComponentClass<
+  AnimateProps<FlatListProps<unknown>>
+> = Animated.createAnimatedComponent(FlatList)
 
-export const AnimatedSectionList = Animated.createAnimatedComponent(SectionList)
+export const AnimatedSectionList: ComponentClass<
+  AnimateProps<SectionListProps<unknown, unknown>>
+> = Animated.createAnimatedComponent(SectionList)
 
 export function scrollToImpl<T extends RefComponent>(
   ref: AnimatedRef<T> | undefined,
