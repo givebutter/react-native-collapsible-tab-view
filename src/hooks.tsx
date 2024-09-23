@@ -60,7 +60,7 @@ export function useAnimatedDynamicRefs(): [
 }
 
 export function useTabProps<T extends TabName>(
-  children: TabReactElement<T>[] | TabReactElement<T>,
+  children: TabReactElement<T>[] | TabReactElement<T> | false,
   tabType: Function
 ): [TabsWithProps<T>, T[]] {
   const options = useMemo(() => {

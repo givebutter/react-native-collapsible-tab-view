@@ -62,9 +62,11 @@ export type OnTabChangeCallback<T extends TabName = TabName> = (
   data: IndexChangeEventData<T>
 ) => void
 
-export type TabReactElement<T extends TabName = TabName> = React.ReactElement<
-  TabProps<T>
-> | null
+export type TabReactElement<T extends TabName = TabName> =
+  | React.ReactElement<TabProps<T>>
+  | null
+  | undefined
+  | false
 
 export type CollapsibleProps = {
   initialTabName?: TabName
@@ -90,7 +92,7 @@ export type CollapsibleProps = {
    * @default null
    */
   snapThreshold?: number | null
-  children: TabReactElement<TabName>[] | TabReactElement<TabName>
+  children: TabReactElement<TabName>[] | TabReactElement<TabName> | false
 
   renderHeader?: (props: TabBarProps<TabName>) => React.ReactElement | null
 
